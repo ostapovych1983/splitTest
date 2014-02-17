@@ -18,6 +18,7 @@ public abstract class Script implements InterfaceScript {
         this.joins = new ArrayList<Join>();
         this.conditions = new ArrayList<Condition>();
         this.tableName = tableName;
+        
     }
 
     public String [] getStringConditions(){

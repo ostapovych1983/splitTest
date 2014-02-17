@@ -5,10 +5,13 @@ import com.ostapovych.vasyl.java.queryfactory.components.booleanoperation.AND;
 import com.ostapovych.vasyl.java.queryfactory.components.booleanoperation.OR;
 import com.ostapovych.vasyl.java.queryfactory.components.conditionoperaions.Equals;
 import com.ostapovych.vasyl.java.queryfactory.components.joins.JoinCondition;
+import com.ostapovych.vasyl.java.queryfactory.components.limitselect.DISTINCT;
 import com.ostapovych.vasyl.java.queryfactory.components.pseudonyms.Pseudonyms;
 import com.ostapovych.vasyl.java.queryfactory.factories.OracleFactory;
 import com.ostapovych.vasyl.java.queryfactory.interfaces.Factory;
+
 import junit.framework.TestCase;
+
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -45,6 +48,7 @@ public class OracleFactoryTest extends TestCase {
         List<JoinCondition> joinConditions = new ArrayList<JoinCondition>();
         joinConditions.add(new JoinCondition(new AND(),"Addresses","streetID",new Equals(),"Streets","id"));
         script.addLeftJoin("Streets",joinConditions);
+        script.setLimit(new DISTINCT());
         System.out.println(script.getGeneratedScript());
     }
     @Test
@@ -57,6 +61,7 @@ public class OracleFactoryTest extends TestCase {
         joinFields.add(new JoinCondition(new AND(),controllerTableName,"PHONEID", new Equals(),phoneTableName,"ID"));
         script.addLeftJoin(phoneTableName, joinFields);
         script.addCondition(new AND(),phoneTableName,"SERIALNUMBER",new Equals(),"'123456789'");
+        script.setLimit(new DISTINCT());
         System.out.println(script.getGeneratedScript());
         //return script.getGeneratedScript();
     }

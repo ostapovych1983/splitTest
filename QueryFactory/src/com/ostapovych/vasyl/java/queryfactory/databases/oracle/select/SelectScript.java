@@ -15,7 +15,8 @@ public class SelectScript extends AbstractSelectScript
     protected String _getGeneratedScript() {
         StringBuffer sb = new StringBuffer();
         sb.append("select ");
-
+        if (this.limit != null)
+        	sb.append(" ").append(limit.getLimit()).append(" ");
        for (int i=0;i<fields.length;i++){
            String fld = Pseudonyms.generatePseudonym(this.tableName)+"."+fields[i];
            if (i== fields.length-1) sb.append(fld);

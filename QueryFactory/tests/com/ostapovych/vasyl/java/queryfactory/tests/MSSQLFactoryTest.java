@@ -23,7 +23,7 @@ public class MSSQLFactoryTest extends TestCase {
 
     @Test
     public void testGetInsertScript() throws Exception {
-
+        
     }
 
     @Test

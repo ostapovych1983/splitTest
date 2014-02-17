@@ -6,17 +6,20 @@ import com.ostapovych.vasyl.java.queryfactory.components.conditions.Condition;
 import com.ostapovych.vasyl.java.queryfactory.components.joins.JoinCondition;
 import com.ostapovych.vasyl.java.queryfactory.errors.ValidatorError;
 import com.ostapovych.vasyl.java.queryfactory.components.joins.Join;
+import com.ostapovych.vasyl.java.queryfactory.components.limitselect.LimitSelect;
 
 import java.util.List;
 
 public abstract class AbstractSelectScript extends Script {
     protected String [] fields;
+    protected LimitSelect limit = null;
 
     protected AbstractSelectScript(String tableName,String[] fields) {
         super(tableName);
         this.fields = fields;
     }
-
+    
+    @Override
     public String getGeneratedScript()throws ValidatorError{
         return this._getGeneratedScript();
     }
@@ -34,7 +37,17 @@ public abstract class AbstractSelectScript extends Script {
         Condition c = new Condition(booleanOperation,fromTable,field,condition,value);
         this.conditions.add(c);
     }
+    
+    
 
-    protected abstract String _getGeneratedScript();
+    public LimitSelect getLimit() {
+		return limit;
+	}
+
+	public void setLimit(LimitSelect limit) {
+		this.limit = limit;
+	}
+
+	protected abstract String _getGeneratedScript();
 
 }
