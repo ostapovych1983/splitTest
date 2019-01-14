@@ -50,6 +50,7 @@ public class OracleFactoryTest extends TestCase {
         script.addLeftJoin("Streets",joinConditions);
         script.setLimit(new DISTINCT());
         System.out.println(script.getGeneratedScript());
+		//stalker
     }
     @Test
     public void testSelectScript() throws Exception{
